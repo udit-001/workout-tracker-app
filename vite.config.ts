@@ -20,12 +20,14 @@ export default defineConfig({
     build: {
         rollupOptions: {
             input: {
-                main: resolve(__dirname, "src/pages/index.html"),
-                workout: resolve(__dirname, "src/pages/workout.html"),
-                workouts: resolve(__dirname, "src/pages/workouts.html"),
-                'add-workout': resolve(__dirname, "src/pages/add-workout.html")
+                index: resolve(__dirname, "index.html"),
+                workout: resolve(__dirname, "workout.html"),
+                workouts: resolve(__dirname, "workouts.html"),
+                'add-workout': resolve(__dirname, "add-workout.html")
             }
-        }
+        },
+        outDir: 'dist',
+        emptyOutDir: true
     },
     appType: 'mpa'
 })

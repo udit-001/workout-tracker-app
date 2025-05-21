@@ -3,18 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Workouts - Workout Tracker</title>
+    <title>Workout Session - Workout Tracker</title>
   </head>
   <body class="bg-gray-50">
     <div class="flex h-screen">
       <!-- Navbar -->
-      <nav class="fixed top-0 left-0 right-0 h-16 bg-white border-b border-gray-100 shadow-sm z-40 flex items-center justify-between px-4 md:hidden">
-        <button id="menuButton" class="p-2 rounded-lg hover:bg-gray-100 transition-colors">
+      <nav class="fixed top-0 left-0 right-0 h-16 bg-white border-b border-gray-100 shadow-sm z-40 flex items-center justify-between px-4">
+        <button id="menuButton" class="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors">
           <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </button>
-        <h1 class="text-lg font-semibold text-gray-700 absolute left-1/2 transform -translate-x-1/2">My Workouts</h1>
+        <h1 id="currentDay" class="text-lg font-semibold text-gray-700 absolute left-1/2 transform -translate-x-1/2">Workout Session</h1>
         <div class="w-10"></div> <!-- Spacer to balance the menu button -->
       </nav>
 
@@ -57,13 +57,38 @@
       <div id="overlay" class="fixed inset-0 bg-stone-400 opacity-50 z-30 hidden md:hidden"></div>
 
       <!-- Main Content -->
-      <main class="flex-1 overflow-auto md:ml-64 pt-16 md:pt-0">
-        <div class="container mx-auto px-2 sm:px-4 py-6 md:p-8">
-          <div class="max-w-3xl mx-auto">
-            <div class="flex justify-end mb-6 hidden" id="resetButtonContainer">
-              <button id="resetData" class="text-sm text-gray-500 hover:text-red-500 transition-colors">Reset All Data</button>
+      <main class="flex-1 overflow-auto md:ml-64 pt-16">
+        <!-- Fixed Timer Bar -->
+        <div class="fixed top-16 left-0 right-0 md:left-64 bg-white border-b border-gray-100 shadow-sm z-30">
+          <div class="container mx-auto px-8 py-3">
+            <div class="max-w-2xl mx-auto flex justify-between items-center">
+              <button id="startTimer" class="bg-green-100 text-green-600 px-4 py-2 rounded hover:bg-green-200 transition-colors">
+                Start
+              </button>
+              <div id="timer" class="text-2xl font-bold text-gray-700">00:00</div>
+              <button id="endWorkout" class="bg-red-100 text-red-600 px-4 py-2 rounded hover:bg-red-200 transition-colors">
+                End
+              </button>
             </div>
-            <div id="workoutDays"></div>
+          </div>
+        </div>
+
+        <div class="container mx-auto p-8 mt-16">
+          <div class="max-w-2xl mx-auto">
+            <div id="workoutView" class="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+              <div id="currentExercise" class="mb-8"></div>
+
+              <div class="flex justify-between items-center" id="navigation-container">
+                <button id="prevExercise" class="bg-gray-100 text-gray-600 px-4 py-2 rounded hover:bg-gray-200 transition-colors">Previous</button>
+                <button id="nextExercise" class="bg-blue-100 text-blue-600 px-4 py-2 rounded hover:bg-blue-200 transition-colors">Next</button>
+              </div>
+            </div>
+
+            <div id="workoutComplete" class="hidden bg-white p-6 rounded-lg shadow-sm border border-gray-100 text-center">
+              <h2 class="text-xl font-semibold text-gray-700 mb-4">Workout Complete!</h2>
+              <p class="text-gray-600 mb-6">Great job! Your workout has been saved.</p>
+              <a href="workouts.html" class="inline-block bg-blue-100 text-blue-600 px-6 py-2 rounded hover:bg-blue-200 transition-colors">View My Workouts</a>
+            </div>
           </div>
         </div>
       </main>
@@ -92,6 +117,6 @@
         });
       });
     </script>
-    <script type="module" src="../js/workouts.js"></script>
+    <script type="module" src="js/workout.js"></script>
   </body>
 </html> 
