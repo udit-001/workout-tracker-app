@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite'
-import { dirname, resolve} from 'node:path'
-import { fileURLToPath} from 'node:url'
+import { dirname, resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import tailwindcss from '@tailwindcss/vite'
 import { VitePWA } from 'vite-plugin-pwa'
 
@@ -11,9 +11,11 @@ export default defineConfig({
     // root: 'src',
     plugins: [
         tailwindcss(),
-        VitePWA({ registerType: 'autoUpdate', 
-            devOptions: {
-                enabled: false
+        VitePWA({
+            registerType: 'autoUpdate',
+            manifest: {
+                name: "Lift",
+                short_name: "Lift"
             }
         }),
     ],
