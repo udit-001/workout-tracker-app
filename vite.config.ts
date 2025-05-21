@@ -15,7 +15,8 @@ export default defineConfig({
             registerType: 'autoUpdate',
             manifest: {
                 name: "Lift",
-                short_name: "Lift"
+                short_name: "Lift",
+                description: "Track your workout routines, simply"
             }
         }),
     ],
