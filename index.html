@@ -145,5 +145,30 @@
       });
     </script>
     <script type="module" src="js/landing.js"></script>
+    <script type="module" src="js/pwa-install.bundle.676d3e3059f4.js"></script>
+    <pwa-install
+      manifest-url="/manifest.webmanifest">
+    </pwa-install>
+
+    <script>
+      // PWA Install event handling
+      const pwaInstall = document.querySelector('pwa-install');
+      
+      pwaInstall.addEventListener('pwa-install-success-event', (event) => {
+        console.log('PWA installed successfully:', event.detail.message);
+      });
+
+      pwaInstall.addEventListener('pwa-install-fail-event', (event) => {
+        console.log('PWA installation failed:', event.detail.message);
+      });
+
+      pwaInstall.addEventListener('pwa-install-available-event', (event) => {
+        console.log('PWA installation is available');
+      });
+
+      pwaInstall.addEventListener('pwa-user-choice-result-event', (event) => {
+        console.log('User choice result:', event.detail.message);
+      });
+    </script>
   </body>
 </html>
