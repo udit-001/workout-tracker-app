@@ -17,6 +17,8 @@ const restTimerDisplay = document.getElementById('restTimerDisplay');
 const startRestTimerButton = document.getElementById('startRestTimer');
 const skipRestButton = document.getElementById('skipRest');
 const endWorkoutButton = document.getElementById('endWorkout');
+const notesModal = document.getElementById('notesModal');
+const closeNotesModal = document.getElementById('closeNotesModal');
 
 // Workout State
 let currentDayIndex = 0;
@@ -62,11 +64,20 @@ function updateWorkoutView() {
   currentExercise.innerHTML = `
     <div class="flex justify-between items-center mb-4">
       <h3 class="text-2xl font-bold text-gray-700">${exercise.name}</h3>
-      <div class="flex items-center bg-gray-50 px-3 py-1 rounded-full">
-        <svg class="w-4 h-4 text-gray-600 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-        </svg>
-        <span class="text-gray-600 font-medium">${currentExerciseIndex + 1} of ${day.exercises.length}</span>
+      <div class="flex items-center gap-2">
+        ${exercise.notes ? `
+          <button id="showNotes" class="text-gray-400 hover:text-gray-600 p-1 rounded-full hover:bg-gray-100" title="View Notes">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+            </svg>
+          </button>
+        ` : ''}
+        <div class="flex items-center bg-gray-50 px-3 py-1 rounded-full">
+          <svg class="w-4 h-4 text-gray-600 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+          </svg>
+          <span class="text-gray-600 font-medium">${currentExerciseIndex + 1} of ${day.exercises.length}</span>
+        </div>
       </div>
     </div>
     <div class="flex gap-4 mb-4">
@@ -90,8 +101,24 @@ function updateWorkoutView() {
         <iframe class="w-full h-full" src="https://www.youtube-nocookie.com/embed/${getYouTubeId(exercise.video)}" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
       </div>
     ` : ''}
-    ${exercise.notes ? `<p class="text-gray-500 mb-4">Notes: ${exercise.notes}</p>` : ''}
   `;
+  
+  // Add event listener for notes button if it exists
+  const showNotesButton = document.getElementById('showNotes');
+  if (showNotesButton) {
+    showNotesButton.addEventListener('click', () => {
+      const modalNotes = document.getElementById('modalNotes');
+      modalNotes.textContent = exercise.notes;
+      notesModal.classList.remove('hidden');
+      notesModal.classList.add('fixed');
+
+      // Add modal event listeners
+      const closeNotesModal = document.getElementById('closeNotesModal');
+      closeNotesModal.addEventListener('click', closeModal);
+      notesModal.addEventListener('click', handleModalClick);
+      document.addEventListener('keydown', handleEscapeKey);
+    });
+  }
   
   // Update navigation container with complete set button
   const navigationContainer = document.querySelector('#navigation-container');
@@ -324,3 +351,29 @@ function saveWorkout(workout) {
 //     { name: "Exercise 2", reps: 12, sets: 4, video: "https://youtube.com/...", notes: "More notes" }
 //   ]
 // }); 
+
+// Function to close modal
+function closeModal() {
+  notesModal.classList.remove('fixed');
+  notesModal.classList.add('hidden');
+  
+  // Remove modal event listeners
+  const closeNotesModal = document.getElementById('closeNotesModal');
+  closeNotesModal.removeEventListener('click', closeModal);
+  notesModal.removeEventListener('click', handleModalClick);
+  document.removeEventListener('keydown', handleEscapeKey);
+}
+
+// Function to handle modal click outside
+function handleModalClick(e) {
+  if (e.target === notesModal) {
+    closeModal();
+  }
+}
+
+// Function to handle escape key
+function handleEscapeKey(e) {
+  if (e.key === 'Escape' && !notesModal.classList.contains('hidden')) {
+    closeModal();
+  }
+} 
