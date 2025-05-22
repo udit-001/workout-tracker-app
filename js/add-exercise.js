@@ -40,6 +40,12 @@ if (workoutDays.length === 0) {
       if (selectedDay && day.name === selectedDay) option.selected = true;
       daySelect.appendChild(option);
     });
+
+    // If there's only one workout day, select it automatically
+    if (workoutDays.length === 1 && !selectedDay) {
+      daySelect.value = workoutDays[0].name;
+      validateForm();
+    }
   }
 
   // Toggle between single reps and rep range
