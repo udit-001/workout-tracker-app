@@ -225,6 +225,11 @@ if (workoutDays.length === 0) {
           window.location.href = '/workouts';
         };
       }
+    } else {
+      // Set default values from preferences for new exercises
+      const preferences = loadPreferences();
+      exerciseRepsInput.value = preferences.defaultReps;
+      exerciseSetsInput.value = preferences.defaultSets;
     }
   });
 
@@ -278,12 +283,13 @@ if (workoutDays.length === 0) {
   function addExerciseHandler() {
     const dayName = daySelect.value;
     if (dayName) {
+      const preferences = loadPreferences();
       const exercise = {
-        name: exerciseNameInput.value.trim(),
-        reps: exerciseRepsInput.value,
-        sets: exerciseSetsInput.value,
-        video: exerciseVideoInput.value.trim(),
-        notes: exerciseNotesInput.value.trim(),
+        name: '',
+        reps: preferences.defaultReps,
+        sets: preferences.defaultSets,
+        video: '',
+        notes: '',
         day: dayName,
         createdAt: Date.now()
       };
@@ -347,5 +353,18 @@ if (workoutDays.length === 0) {
     previewIframe.src = '';
     previewIframe.classList.add('hidden');
     placeholder.classList.remove('hidden');
+  }
+
+  // Load preferences
+  function loadPreferences() {
+    const defaultPreferences = {
+      defaultReps: 10,
+      defaultSets: 3,
+      defaultRestDuration: 60,
+      restTimerSound: true
+    };
+    
+    const savedPreferences = localStorage.getItem('preferences');
+    return savedPreferences ? JSON.parse(savedPreferences) : defaultPreferences;
   }
 } 

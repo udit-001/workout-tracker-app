@@ -162,10 +162,22 @@ function completeSet() {
   }
 }
 
+// Load preferences
+function loadPreferences() {
+  const savedPreferences = localStorage.getItem('workoutPreferences');
+  return savedPreferences ? JSON.parse(savedPreferences) : {
+    defaultReps: 10,
+    defaultSets: 3,
+    defaultRestDuration: 60,
+    restTimerSound: true
+  };
+}
+
 // Function to show rest timer
 function showRestTimer() {
   timerBar.classList.remove('hidden');
-  restSecondsRemaining = 60; // Default 60 seconds rest
+  const preferences = loadPreferences();
+  restSecondsRemaining = preferences.defaultRestDuration;
   updateRestTimerDisplay();
 }
 
@@ -183,8 +195,11 @@ function startRestTimer() {
         updateRestTimerDisplay();
       } else {
         stopRestTimer();
-        // Play a bell sound when rest is complete
-        new Audio('/sounds/bell.wav').play();
+        // Play sound only if enabled in preferences
+        const preferences = loadPreferences();
+        if (preferences.restTimerSound) {
+          new Audio('/sounds/bell.wav').play();
+        }
       }
     }, 1000);
   } else {
