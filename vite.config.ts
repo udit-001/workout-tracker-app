@@ -42,19 +42,6 @@ export default defineConfig({
                 background_color: '#F8FAFC',
                 shortcuts: [
                     {
-                        name: 'Home',
-                        short_name: 'Home',
-                        description: 'Go to home page',
-                        url: '/',
-                        icons: [
-                            {
-                                src: 'icons/pwa-192x192.png',
-                                sizes: '192x192',
-                                type: 'image/png'
-                            }
-                        ]
-                    },
-                    {
                         name: 'Add Exercise',
                         short_name: 'Add',
                         description: 'Add a new exercise',
@@ -89,6 +76,17 @@ export default defineConfig({
                                 src: 'icons/pwa-192x192.png',
                                 sizes: '192x192',
                                 type: 'image/png'
+                            }
+                        ]
+                    },
+                    {
+                        name: 'Preferences',
+                        short_name: 'Preferences',
+                        description: 'Manage preferences',
+                        url: '/preferences',
+                        icons: [
+                            {
+                                src: 'icons/pwa-192x192.png'
                             }
                         ]
                     }
