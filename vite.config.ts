@@ -46,23 +46,51 @@ export default defineConfig({
                         short_name: 'Home',
                         description: 'Go to home page',
                         url: '/',
+                        icons: [
+                            {
+                                src: 'icons/pwa-192x192.png',
+                                sizes: '192x192',
+                                type: 'image/png'
+                            }
+                        ]
                     },
                     {
                         name: 'Add Exercise',
                         short_name: 'Add',
                         description: 'Add a new exercise',
                         url: '/add-exercise',
+                        icons: [
+                            {
+                                src: 'icons/pwa-192x192.png',
+                                sizes: '192x192',
+                                type: 'image/png'
+                            }
+                        ]
                     },
                     {
                         name: 'View Workouts',
                         short_name: 'Workouts',
                         url: '/workouts',
+                        icons: [
+                            {
+                                src: 'icons/pwa-192x192.png',
+                                sizes: '192x192',
+                                type: 'image/png'
+                            }
+                        ]
                     },
                     {
                         name: 'Manage Days',
                         short_name: 'Days',
                         description: 'Manage workout days',
                         url: '/manage-days',
+                        icons: [
+                            {
+                                src: 'icons/pwa-192x192.png',
+                                sizes: '192x192',
+                                type: 'image/png'
+                            }
+                        ]
                     }
                 ]
             },
