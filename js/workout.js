@@ -73,8 +73,8 @@ function updateWorkoutView() {
       </div>
     </div>
     ${exercise.video ? 
-      `<div class="aspect-w-16 aspect-h-9 mb-4">
-        <iframe class="w-full h-64" src="https://www.youtube-nocookie.com/embed/${getYouTubeId(exercise.video)}" frameborder="0" allowfullscreen></iframe>
+      `<div class="aspect-video mb-4">
+        <iframe class="w-full h-full" src="https://www.youtube-nocookie.com/embed/${getYouTubeId(exercise.video)}" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
       </div>` : ''}
     ${exercise.notes ? `<p class="text-gray-500 mb-4">Notes: ${exercise.notes}</p>` : ''}
   `;
