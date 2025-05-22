@@ -78,13 +78,16 @@
         <div class="container mx-auto px-2 sm:px-4 py-6 md:p-8">
           <div class="max-w-2xl mx-auto">
             <!-- Add new workout day -->
-            <div class="bg-white p-4 sm:p-6 rounded-lg shadow-sm border border-gray-100 mb-8">
+            <div class="bg-white p-4 sm:p-6 pb-6 sm:pb-8 rounded-lg shadow-sm border border-gray-100 mb-8">
               <div class="flex flex-col sm:flex-row sm:items-end gap-2">
                 <div class="flex-1">
                   <label class="block text-gray-700 font-bold mb-2">Add New Workout Day</label>
-                  <input type="text" id="newDayInput" placeholder="e.g., Monday, Push, Cardio" class="w-full p-2 border border-gray-200 rounded focus:border-blue-200 focus:ring-1 focus:ring-blue-200" />
+                  <div class="relative">
+                    <input type="text" id="newDayInput" placeholder="e.g., Monday, Push, Cardio" class="w-full p-2 border border-gray-200 rounded focus:border-blue-200 focus:ring-1 focus:ring-blue-200" />
+                    <div id="errorMessage" class="text-red-500 text-sm mt-1 absolute"></div>
+                  </div>
                 </div>
-                <button id="addDayButton" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors">Add Day</button>
+                <button id="addDayButton" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors h-[42px]">Add Day</button>
               </div>
             </div>
 

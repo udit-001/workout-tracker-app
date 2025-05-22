@@ -7,18 +7,50 @@ const daysList = document.getElementById('daysList');
 const emptyState = document.getElementById('emptyState');
 const newDayInput = document.getElementById('newDayInput');
 const addDayButton = document.getElementById('addDayButton');
+const errorMessage = document.getElementById('errorMessage');
+
+// Disable add button initially
+addDayButton.disabled = true;
+addDayButton.classList.add('opacity-50', 'cursor-not-allowed');
+
+// Add input event listener to enable/disable button and check for duplicates
+newDayInput.addEventListener('input', () => {
+  const newDay = newDayInput.value.trim();
+  const hasText = newDay.length > 0;
+  const isDuplicate = hasText && workoutDays.some(day => day.name.toLowerCase() === newDay.toLowerCase());
+  
+  addDayButton.disabled = !hasText || isDuplicate;
+  
+  if (addDayButton.disabled) {
+    addDayButton.classList.add('opacity-50', 'cursor-not-allowed');
+  } else {
+    addDayButton.classList.remove('opacity-50', 'cursor-not-allowed');
+  }
+
+  // Show/hide error message
+  if (isDuplicate) {
+    errorMessage.textContent = 'A workout day with this name already exists';
+    errorMessage.classList.remove('hidden');
+  } else {
+    errorMessage.classList.add('hidden');
+  }
+});
 
 // Add new workout day
 addDayButton.addEventListener('click', () => {
   const newDay = newDayInput.value.trim();
   if (!newDay) return;
   if (workoutDays.some(day => day.name.toLowerCase() === newDay.toLowerCase())) {
-    alert('A workout day with this name already exists.');
     return;
   }
   workoutDays.push({ name: newDay, exercises: [] });
   saveAndRender();
   newDayInput.value = '';
+  // Disable button after adding
+  addDayButton.disabled = true;
+  addDayButton.classList.add('opacity-50', 'cursor-not-allowed');
+  // Hide error message
+  errorMessage.classList.add('hidden');
 });
 
 function renderDays() {
