@@ -57,7 +57,7 @@ function renderDays() {
     rightSide.className = 'flex gap-3 text-sm';
     
     const addLink = document.createElement('a');
-    addLink.href = `/add-workout.html?day=${encodeURIComponent(day.name)}`;
+    addLink.href = `/add-exercise.html?day=${encodeURIComponent(day.name)}`;
     addLink.className = 'text-blue-600 hover:text-blue-800';
     addLink.textContent = 'Add';
     rightSide.appendChild(addLink);

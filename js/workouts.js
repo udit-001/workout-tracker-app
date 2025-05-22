@@ -41,7 +41,7 @@ function renderWorkoutDays() {
     emptyState.className = 'bg-white rounded shadow-sm border border-gray-100 p-4 text-center';
     emptyState.innerHTML = `
       <p class="text-gray-500 mb-3">No workouts added yet</p>
-      <a href="add-workout.html" class="text-blue-600 hover:text-blue-700 transition-colors">
+      <a href="add-exercise.html" class="text-blue-600 hover:text-blue-700 transition-colors">
         Add your first workout →
       </a>
     `;
@@ -56,9 +56,9 @@ function renderWorkoutDays() {
       
       // Create the accordion header
       const header = document.createElement('div');
-      header.className = 'flex justify-between items-center p-4 cursor-pointer hover:bg-gray-50 transition-colors';
+      header.className = 'flex flex-col sm:flex-row sm:justify-between sm:items-center p-4 cursor-pointer hover:bg-gray-50 transition-colors';
       header.innerHTML = `
-        <div class="flex items-center">
+        <div class="flex items-center mb-3 sm:mb-0">
           <svg class="w-5 h-5 mr-2 text-gray-500 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
           </svg>
@@ -66,7 +66,7 @@ function renderWorkoutDays() {
           <span class="ml-3 text-sm text-gray-500">${day.exercises.length} exercises</span>
         </div>
         <div class="flex items-center gap-2">
-          <a href="add-workout.html?day=${day.name}" class="bg-green-100 text-green-600 px-3 py-1 rounded hover:bg-green-200 transition-colors text-sm whitespace-nowrap">
+          <a href="add-exercise.html?day=${day.name}" class="bg-green-100 text-green-600 px-3 py-1 rounded hover:bg-green-200 transition-colors text-sm whitespace-nowrap">
             Add Exercise
           </a>
           <a href="workout.html?day=${dayIndex}" class="bg-blue-100 text-blue-600 px-3 py-1 rounded hover:bg-blue-200 transition-colors text-sm whitespace-nowrap">
@@ -85,10 +85,10 @@ function renderWorkoutDays() {
         const exerciseItem = document.createElement('li');
         exerciseItem.className = 'border border-gray-100 p-4 rounded bg-gray-50';
         exerciseItem.innerHTML = `
-          <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
+          <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4">
             <div class="flex-1">
-              <div class="flex flex-col md:flex-row md:items-center gap-3 mb-3">
-                <h3 class="text-lg md:text-xl font-semibold text-gray-800">${exercise.name}</h3>
+              <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
+                <h3 class="text-lg font-semibold text-gray-800">${exercise.name}</h3>
                 <div class="flex flex-wrap gap-2">
                   <div class="flex items-center bg-blue-50 px-2.5 py-1 rounded-full">
                     <svg class="w-3.5 h-3.5 text-blue-600 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -122,7 +122,7 @@ function renderWorkoutDays() {
                 ` : ''}
               </div>
             </div>
-            <div class="flex gap-2 md:ml-4">
+            <div class="flex gap-2 sm:ml-4">
               <a href="add-workout.html?hash=${exercise.id}&day=${dayIndex}&exercise=${exerciseIndex}" 
                  class="edit-exercise-btn bg-gray-100 text-gray-600 p-2 rounded hover:bg-gray-200 transition-colors">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
