@@ -65,9 +65,14 @@ function renderWorkoutDays() {
           <h2 class="text-lg md:text-xl font-semibold text-gray-700">${day.name}</h2>
           <span class="ml-3 text-sm text-gray-500">${day.exercises.length} exercises</span>
         </div>
-        <a href="workout.html?day=${dayIndex}" class="bg-blue-100 text-blue-600 px-3 py-1 rounded hover:bg-blue-200 transition-colors text-sm whitespace-nowrap">
-          View
-        </a>
+        <div class="flex items-center gap-2">
+          <a href="add-workout.html?day=${day.name}" class="bg-green-100 text-green-600 px-3 py-1 rounded hover:bg-green-200 transition-colors text-sm whitespace-nowrap">
+            Add Exercise
+          </a>
+          <a href="workout.html?day=${dayIndex}" class="bg-blue-100 text-blue-600 px-3 py-1 rounded hover:bg-blue-200 transition-colors text-sm whitespace-nowrap">
+            View
+          </a>
+        </div>
       `;
       
       // Create the collapsible content
