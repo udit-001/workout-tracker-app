@@ -62,11 +62,14 @@ function renderDays() {
     addLink.textContent = 'Add';
     rightSide.appendChild(addLink);
 
-    const viewLink = document.createElement('a');
-    viewLink.href = `/workout.html?day=${idx}`;
-    viewLink.className = 'text-blue-600 hover:text-blue-800';
-    viewLink.textContent = 'View';
-    rightSide.appendChild(viewLink);
+    // Only show view link if there are exercises
+    if (day.exercises.length > 0) {
+      const viewLink = document.createElement('a');
+      viewLink.href = `/workout.html?day=${idx}`;
+      viewLink.className = 'text-blue-600 hover:text-blue-800';
+      viewLink.textContent = 'View';
+      rightSide.appendChild(viewLink);
+    }
 
     info.appendChild(rightSide);
 
