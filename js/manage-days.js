@@ -31,7 +31,7 @@ function renderDays() {
   }
   workoutDays.forEach((day, idx) => {
     const wrapper = document.createElement('div');
-    wrapper.className = 'flex items-center justify-between bg-white p-4 rounded shadow-sm border border-gray-100';
+    wrapper.className = 'flex flex-col sm:flex-row sm:items-center justify-between bg-white p-4 rounded shadow-sm border border-gray-100 gap-3';
 
     // Day name and exercise count
     const info = document.createElement('div');
@@ -39,10 +39,10 @@ function renderDays() {
     
     // Left side: Name and count
     const leftSide = document.createElement('div');
-    leftSide.className = 'flex items-center gap-4';
+    leftSide.className = 'flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4';
     const name = document.createElement('span');
     name.textContent = day.name;
-    name.className = 'font-semibold text-gray-700 editable-day';
+    name.className = 'font-semibold text-gray-700 editable-day text-lg sm:text-base';
     name.contentEditable = false;
     name.setAttribute('data-idx', idx);
     const count = document.createElement('span');
@@ -58,7 +58,7 @@ function renderDays() {
     
     const addLink = document.createElement('a');
     addLink.href = `/add-exercise.html?day=${encodeURIComponent(day.name)}`;
-    addLink.className = 'text-blue-600 hover:text-blue-800';
+    addLink.className = 'text-blue-600 hover:text-blue-800 px-2 py-1 rounded hover:bg-blue-50';
     addLink.textContent = 'Add';
     rightSide.appendChild(addLink);
 
@@ -66,7 +66,7 @@ function renderDays() {
     if (day.exercises.length > 0) {
       const viewLink = document.createElement('a');
       viewLink.href = `/workout.html?day=${idx}`;
-      viewLink.className = 'text-blue-600 hover:text-blue-800';
+      viewLink.className = 'text-blue-600 hover:text-blue-800 px-2 py-1 rounded hover:bg-blue-50';
       viewLink.textContent = 'View';
       rightSide.appendChild(viewLink);
     }
@@ -75,13 +75,13 @@ function renderDays() {
 
     // Edit and delete buttons
     const actions = document.createElement('div');
-    actions.className = 'flex gap-2';
+    actions.className = 'flex gap-2 sm:ml-4';
     const editBtn = document.createElement('button');
     editBtn.textContent = 'Edit';
-    editBtn.className = 'px-3 py-1 rounded bg-blue-100 text-blue-700 hover:bg-blue-200';
+    editBtn.className = 'flex-1 sm:flex-none px-4 py-2 rounded bg-blue-100 text-blue-700 hover:bg-blue-200 text-base font-medium';
     const deleteBtn = document.createElement('button');
     deleteBtn.textContent = 'Delete';
-    deleteBtn.className = 'px-3 py-1 rounded bg-red-100 text-red-700 hover:bg-red-200';
+    deleteBtn.className = 'flex-1 sm:flex-none px-4 py-2 rounded bg-red-100 text-red-700 hover:bg-red-200 text-base font-medium';
     actions.appendChild(editBtn);
     actions.appendChild(deleteBtn);
 
@@ -89,11 +89,18 @@ function renderDays() {
     editBtn.addEventListener('click', () => {
       name.contentEditable = true;
       name.focus();
-      name.classList.add('ring', 'ring-blue-200');
+      name.classList.add('ring', 'ring-blue-200', 'px-2', 'py-1', 'rounded');
+      // Select all text for easier editing
+      const range = document.createRange();
+      range.selectNodeContents(name);
+      const selection = window.getSelection();
+      selection.removeAllRanges();
+      selection.addRange(range);
     });
+
     name.addEventListener('blur', () => {
       name.contentEditable = false;
-      name.classList.remove('ring', 'ring-blue-200');
+      name.classList.remove('ring', 'ring-blue-200', 'px-2', 'py-1', 'rounded');
       const newName = name.textContent.trim();
       if (newName && newName !== day.name) {
         // Prevent duplicate names
@@ -108,6 +115,7 @@ function renderDays() {
         name.textContent = day.name;
       }
     });
+
     name.addEventListener('keydown', (e) => {
       if (e.key === 'Enter') {
         e.preventDefault();
