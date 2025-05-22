@@ -77,7 +77,8 @@ export default defineConfig({
                 index: resolve(__dirname, "index.html"),
                 workout: resolve(__dirname, "workout.html"),
                 workouts: resolve(__dirname, "workouts.html"),
-                'add-workout': resolve(__dirname, "add-workout.html")
+                'add-workout': resolve(__dirname, "add-workout.html"),
+                'manage-days': resolve(__dirname, "manage-days.html")
             }
         },
         outDir: 'dist',
