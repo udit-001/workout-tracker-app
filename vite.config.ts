@@ -39,7 +39,32 @@ export default defineConfig({
                 scope: '/',
                 display: 'standalone',
                 theme_color: '#2563EB',
-                background_color: '#F8FAFC'
+                background_color: '#F8FAFC',
+                shortcuts: [
+                    {
+                        name: 'Home',
+                        short_name: 'Home',
+                        description: 'Go to home page',
+                        url: '/',
+                    },
+                    {
+                        name: 'Add Workout',
+                        short_name: 'Add',
+                        description: 'Add a new workout',
+                        url: '/add-workout',
+                    },
+                    {
+                        name: 'View Workouts',
+                        short_name: 'Workouts',
+                        url: '/workouts',
+                    },
+                    {
+                        name: 'Manage Days',
+                        short_name: 'Days',
+                        description: 'Manage workout days',
+                        url: '/manage-days',
+                    }
+                ]
             },
             workbox: {
                 globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
