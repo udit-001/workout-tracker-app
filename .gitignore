@@ -28,3 +28,6 @@ content/bookends/*.json
 *.njsproj
 *.sln
 *.sw?
+
+# Generated Decap CMS config (built from template)
+public/admin/config.yml
