@@ -21,8 +21,9 @@ jobs:
           git remote add template https://github.com/udit-001/workout-tracker-app.git 2>/dev/null || true
           git remote set-url template https://github.com/udit-001/workout-tracker-app.git
           git fetch template || { echo "::error::Failed to fetch from template repo"; exit 1; }
+          git rev-parse --verify template/master >/dev/null 2>&1 || { echo "::error::template/master branch not found"; exit 1; }
 
-          if git diff --quiet HEAD template/main; then
+          if git diff --quiet HEAD template/master; then
             echo "Already up to date"
             echo "HAS_CHANGES=false" >> "$GITHUB_ENV"
           else
@@ -38,7 +39,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git checkout -b "$BRANCH"
-          git merge template/main --no-edit || true
+          git merge template/master --no-edit --allow-unrelated-histories || true
 
           cleanup_branch() {
             echo "PR creation failed. Cleaning up branch."
