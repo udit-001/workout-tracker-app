@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "generate-pwa-assets": "pwa-assets-generator"
+    "generate-pwa-assets": "pwa-assets-generator",
+    "deploy": "pnpm run build && wrangler pages deploy"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.1.7",
@@ -15,6 +16,7 @@
     "autoprefixer": "^10.4.21",
     "tailwindcss": "^4.1.7",
     "vite": "^6.3.5",
-    "vite-plugin-pwa": "^1.0.0"
+    "vite-plugin-pwa": "^1.0.0",
+    "wrangler": "^4.63.0"
   }
 }
