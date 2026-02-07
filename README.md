@@ -12,12 +12,8 @@ A simple, minimal workout tracker that runs as a PWA. Manage your workout routin
 ## Use This Template
 
 1. Click **"Use this template"** on GitHub to create your own repo
-2. Deploy to [Netlify](https://www.netlify.com/) (or any static host)
+2. Deploy to [Cloudflare Pages](https://pages.cloudflare.com/) (or any static host)
 3. Open the app and go to **Manage Workouts** to create your workout days and exercises via the CMS
-
-### Deploy to Netlify
-
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/udit-001/workout-tracker)
 
 ### Deploy to Cloudflare Pages
 
