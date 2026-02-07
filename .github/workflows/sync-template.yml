@@ -18,7 +18,7 @@ jobs:
 
       - name: Sync from template
         run: |
-          git remote add template https://github.com/udit-001/workout-tracker.git || true
+          git remote add template https://github.com/udit-001/workout-tracker-app.git || true
           git fetch template
 
           if git diff --quiet HEAD...template/main; then
@@ -43,7 +43,7 @@ jobs:
             git push origin "$BRANCH"
             gh pr create \
               --title "chore: sync updates from template" \
-              --body "Automated PR to sync latest changes from the [workout-tracker template](https://github.com/udit-001/workout-tracker)." \
+              --body "Automated PR to sync latest changes from the [workout-tracker template](https://github.com/udit-001/workout-tracker-app)." \
               --base main \
               --head "$BRANCH"
           else
@@ -52,7 +52,7 @@ jobs:
             git push origin "$BRANCH"
             gh pr create \
               --title "chore: sync updates from template (conflicts)" \
-              --body "Automated PR to sync latest changes from the [workout-tracker template](https://github.com/udit-001/workout-tracker). ⚠️ This PR has merge conflicts that need manual resolution." \
+              --body "Automated PR to sync latest changes from the [workout-tracker template](https://github.com/udit-001/workout-tracker-app). ⚠️ This PR has merge conflicts that need manual resolution." \
               --base main \
               --head "$BRANCH"
           fi

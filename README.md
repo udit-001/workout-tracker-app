@@ -15,7 +15,7 @@ A minimal PWA workout tracker. Manage routines via a built-in CMS, track sets/re
 2. Deploy to Cloudflare Pages (or any static host)
 3. Open the app → **Manage Workouts** to add exercises
 
-[![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/udit-001/workout-tracker)
+[![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/udit-001/workout-tracker-app)
 
 ## Staying Updated
 
